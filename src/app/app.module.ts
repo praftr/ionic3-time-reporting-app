@@ -8,6 +8,9 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CouchDBProvider } from '../providers/couch-db/couch-db';
+import { UserProvider } from '../providers/user/user';
+import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CouchDBProvider,
+    CouchDBFactory,
+    UserProvider
   ]
 })
 export class AppModule {}

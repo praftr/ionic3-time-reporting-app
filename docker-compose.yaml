@@ -1,0 +1,9 @@
+db:
+  image: couchdb
+  ports:
+    - "5990:5984"
+  environment:
+    - COUCHDB_USER=admin
+    - COUCHDB_PASSWORD=admin
+  volumes:
+    - ./data:/opt/couchdb/data
