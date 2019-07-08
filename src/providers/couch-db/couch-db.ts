@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
+import { Views } from '../../models/model.module';
 
 PouchDB.plugin(PouchDBFind);
 
@@ -18,7 +19,12 @@ export class CouchDBProvider {
     this.remoteDB = new PouchDB(`http://admin:admin@127.0.0.1:5990/edycem`);
   }
 
-  public init(): Promise<any> {
+  public async initialize(): Promise<any> {
+    await this.synchronize();
+    await this.pushViews();
+  }
+
+  public synchronize(): Promise<any> {
     return this.handleReplication()
       .then(() => {
         this.handleSynchronisation()
@@ -89,5 +95,27 @@ export class CouchDBProvider {
     return this.localDB.createIndex(index)
       .then(() => this.localDB.findDocs(params))
       .catch(err => Promise.reject(err));
+  }
+
+  public queryViews(viewName: string): Promise<any> {
+    return this.localDB.query(viewName)
+      .then(docs => Promise.resolve(docs))
+      .catch(err => Promise.reject(err));
+  }
+
+  private putView(view: object): Promise<any> {
+    return this.localDB.put(view)
+      .then(response => Promise.resolve(response))
+      .catch(err => {
+        if (err.name !== 'conflict') {
+          Promise.reject(err);
+        }
+      });
+  }
+
+  public async pushViews(): Promise<any> {
+    return Views.forEach(async view => {
+      await this.putView(view)
+    });
   }
 }

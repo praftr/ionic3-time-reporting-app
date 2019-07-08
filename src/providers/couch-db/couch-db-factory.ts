@@ -7,7 +7,7 @@ export class CouchDBFactory {
 
   public async createCouchDB(): Promise<CouchDBProvider> {
     this.db = new CouchDBProvider();
-    return await this.db.init()
+    return await this.db.initialize();
   }
 
   public getCouchDB(): CouchDBProvider {

@@ -24,6 +24,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private couchDBFactory: CouchDBFactory) {
     this.initializeApp();
+    this.couchDBFactory.createCouchDB();
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -34,14 +35,13 @@ export class MyApp {
 
   }
 
-  async initializeApp() {
+  initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    await this.couchDBFactory.createCouchDB();
   }
 
   openPage(page) {
