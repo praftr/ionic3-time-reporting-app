@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Rapport } from '../../models/rapport';
@@ -8,8 +8,8 @@ import { TacheProvider } from '../../providers/tache/tache';
 import { RapportProvider } from '../../providers/rapport/rapport';
 import { ProjetProvider } from '../../providers/projet/projet';
 import { Projet } from '../../models/projet';
+import { RapportIndexPage } from '../rapport-index/rapport-index';
 
-@IonicPage()
 @Component({
   selector: 'page-rapport-new',
   templateUrl: 'rapport-new.html'
@@ -53,7 +53,7 @@ export class RapportNewPage {
 
   public onSubmit() {
     this.rapportProvider.create(this.rapport)
-      .then(response => console.log('rapport created successfully', response))
+      .then(() => this.navCtrl.setRoot(RapportIndexPage))
       .catch(err => console.error('rapport creation failed', err));
   }
 
