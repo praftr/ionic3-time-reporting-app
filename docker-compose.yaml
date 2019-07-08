@@ -6,4 +6,5 @@ db:
     - COUCHDB_USER=admin
     - COUCHDB_PASSWORD=admin
   volumes:
-    - ./data:/opt/couchdb/data
+    - ./db/data:/opt/couchdb/data
+    - ./db/conf:/opt/couchdb/etc/local.d
