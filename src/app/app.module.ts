@@ -4,19 +4,25 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { RapportNewPage } from '../pages/rapport-new/rapport-new';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CouchDBProvider } from '../providers/couch-db/couch-db';
 import { UserProvider } from '../providers/user/user';
 import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
+import { RapportProvider } from '../providers/rapport/rapport';
+import { ProjetProvider } from '../providers/projet/projet';
+import { TacheProvider } from '../providers/tache/tache';
+import { BaseProvider } from '../providers/base/base';
+import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    RapportNewPage,
+    RapportIndexPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,8 @@ import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    RapportNewPage,
+    RapportIndexPage
   ],
   providers: [
     StatusBar,
@@ -34,7 +41,11 @@ import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CouchDBProvider,
     CouchDBFactory,
-    UserProvider
+    UserProvider,
+    RapportProvider,
+    ProjetProvider,
+    TacheProvider,
+    BaseProvider
   ]
 })
 export class AppModule {}

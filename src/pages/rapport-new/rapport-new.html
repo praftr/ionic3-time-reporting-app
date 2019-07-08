@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ajout d'une saisie</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="newForm" (ngSubmit)="onSubmit()">
+
+    <ion-input type="hidden" [(ngModel)]="rapport.user_id" formControlName="user_id"></ion-input>
+
+    <ion-item>
+      <ion-label>Projet</ion-label>
+      <ion-select #projetSelect (ionChange)="onChange(projetSelect.value)" interface="popover">
+        <ion-option *ngFor="let projet of projets" [value]="projet._id">{{ projet.nom }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tâche</ion-label>
+      <ion-select [(ngModel)]="rapport.tache_id" formControlName="tache_id" interface="popover">
+        <ion-option *ngFor="let tache of taches" [value]="tache._id">{{ tache.nom }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Duree</ion-label>
+      <ion-input type="number" required [(ngModel)]="rapport.duree" formControlName="duree"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Commentaire</ion-label>
+      <ion-textarea required [(ngModel)]="rapport.commentaire" formControlName="commentaire"></ion-textarea>
+    </ion-item>
+
+    <button ion-button [disabled]="!newForm.valid">Valider</button>
+
+  </form>
+</ion-content>

@@ -52,6 +52,12 @@ export class CouchDBProvider {
     console.error('syncing error', err.result);
   }
 
+  public getDoc(id: string): Promise<any> {
+    return this.localDB.get(id)
+      .then(doc => Promise.resolve(doc))
+      .catch(err => Promise.reject(err));
+  }
+
   public postDoc(input: any): Promise<any> {
     return this.localDB.post(input)
       .then(result => this.localDB.get(result.id))
@@ -59,7 +65,7 @@ export class CouchDBProvider {
       .catch(err => Promise.reject(err));
   }
 
-  public updateDoc(input: any): Promise<any> {
+  public putDoc(input: any): Promise<any> {
     return this.localDB.get(input._id)
       .then(doc => this.localDB.put(Object.assign(doc, input)))
       .then(() => this.localDB.get(input._id))
