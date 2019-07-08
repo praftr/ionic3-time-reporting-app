@@ -14,3 +14,5 @@ export class Projet extends Base {
   echeance: number;
   objectif: string;
 }
+
+export const ProjetViews = [];

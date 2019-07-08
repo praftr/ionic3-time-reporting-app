@@ -39,4 +39,10 @@ export class BaseProvider {
       .catch(err => Promise.reject(err));
   }
 
+  protected getAllBy(viewName: string, params: object = null): Promise<any> {
+    return this.dom.queryViews(viewName, params)
+      .then(response => Promise.resolve(response.rows))
+      .catch(err => Promise.reject(err));
+  }
+
 }

@@ -97,8 +97,8 @@ export class CouchDBProvider {
       .catch(err => Promise.reject(err));
   }
 
-  public queryViews(viewName: string): Promise<any> {
-    return this.localDB.query(viewName)
+  public queryViews(viewName: string, params: object): Promise<any> {
+    return this.localDB.query(viewName, params)
       .then(docs => Promise.resolve(docs))
       .catch(err => Promise.reject(err));
   }

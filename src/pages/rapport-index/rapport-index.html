@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mes saisies</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="rapports">
+    <ion-card *ngFor="let rapport of rapports" color="primary-light">
+
+      <ion-card-header *ngIf="rapport.tache">
+        {{ rapport.duree }}h de {{ rapport.tache.nom }}
+      </ion-card-header>
+
+      <ion-card-content *ngIf="rapport.tache && rapport.tache.projet">
+        {{ rapport.tache.projet.nom }}
+      </ion-card-content>
+
+    </ion-card>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="toRapportNew()">
+      <ion-icon name="add" color="white"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
