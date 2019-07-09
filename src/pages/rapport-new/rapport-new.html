@@ -11,6 +11,7 @@
   <form [formGroup]="newForm" (ngSubmit)="onSubmit()">
 
     <ion-input type="hidden" [(ngModel)]="rapport.user_id" formControlName="user_id"></ion-input>
+    <ion-input type="hidden" [(ngModel)]="rapport.date" formControlName="date"></ion-input>
 
     <ion-item>
       <ion-label>Projet</ion-label>

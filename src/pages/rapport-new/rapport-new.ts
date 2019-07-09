@@ -9,6 +9,7 @@ import { RapportProvider } from '../../providers/rapport/rapport';
 import { ProjetProvider } from '../../providers/projet/projet';
 import { Projet } from '../../models/projet';
 import { RapportIndexPage } from '../rapport-index/rapport-index';
+import { BaseProvider } from '../../providers/base/base';
 
 @Component({
   selector: 'page-rapport-new',
@@ -32,7 +33,8 @@ export class RapportNewPage {
   ) {
     this.rapport = new Rapport();
     this.newForm = this.formBuilder.group({
-      type: ['rapport'],
+      type: [Rapport.TYPE],
+      date: ['', Validators.required],
       duree: ['', Validators.required],
       commentaire: ['', Validators.required],
       user_id: ['', Validators.required],
@@ -40,7 +42,8 @@ export class RapportNewPage {
     });
     this.projet = new Projet();
     // todo: Get the user's id from the current logged user
-    this.rapport.user_id = '04802822de2af5cc4af53bac8c003378'
+    this.rapport.user_id = '04802822de2af5cc4af53bac8c003378';
+    this.rapport.date = BaseProvider.getDateTimeNow();
   }
 
   async ionViewDidLoad() {

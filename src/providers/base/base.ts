@@ -45,4 +45,9 @@ export class BaseProvider {
       .catch(err => Promise.reject(err));
   }
 
+  public static getDateTimeNow(): string {
+    const now = new Date();
+    return now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+  }
+
 }

@@ -6,6 +6,7 @@ export class Rapport extends Base {
 
   type: string = Rapport.TYPE;
   duree: number;
+  date: string;
   commentaire: string;
   tache_id: string;
   user_id: string;
