@@ -1,13 +1,13 @@
 <ion-menu [content]="content" type="overlay">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="sidemenu__content">
     <ion-list>
-      <button menuClose ion-item icon-start *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item icon-start *ngFor="let p of pages" (click)="openPage(p)" color="primary-light">
         <ion-icon [name]="p.icon"></ion-icon>
         {{p.title}}
       </button>
