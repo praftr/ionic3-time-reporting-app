@@ -3,7 +3,6 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { RapportNewPage } from '../pages/rapport-new/rapport-new';
 import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
 import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
@@ -14,9 +13,9 @@ import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = RapportIndexPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, icon: string, component: any}>;
 
   constructor(
     public platform: Platform,
@@ -28,9 +27,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Ajouter une saisie', component: RapportNewPage },
-      { title: 'Saisies', component: RapportIndexPage }
+      { title: 'Saisies', icon: 'home', component: RapportIndexPage },
+      { title: 'Ajouter une saisie', icon: 'stopwatch', component: RapportNewPage }
     ];
 
   }
