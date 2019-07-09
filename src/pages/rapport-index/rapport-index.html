@@ -15,8 +15,8 @@
         {{ rapport.duree }}h de {{ rapport.tache.nom }}
       </ion-card-header>
 
-      <ion-card-content *ngIf="rapport.tache && rapport.tache.projet">
-        {{ rapport.tache.projet.nom }}
+      <ion-card-content *ngIf="rapport.tache && rapport.tache.projet && rapport.tache.activite">
+        {{ rapport.tache.projet.nom }} {{ rapport.tache.activite.nom }}
       </ion-card-content>
 
     </ion-card>

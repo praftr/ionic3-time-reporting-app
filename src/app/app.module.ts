@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { RapportNewPage } from '../pages/rapport-new/rapport-new';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,11 +15,11 @@ import { ProjetProvider } from '../providers/projet/projet';
 import { TacheProvider } from '../providers/tache/tache';
 import { BaseProvider } from '../providers/base/base';
 import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
+import { ActiviteProvider } from '../providers/activite/activite';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     RapportNewPage,
     RapportIndexPage
   ],
@@ -31,7 +30,6 @@ import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     RapportNewPage,
     RapportIndexPage
   ],
@@ -45,7 +43,8 @@ import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
     RapportProvider,
     ProjetProvider,
     TacheProvider,
-    BaseProvider
+    BaseProvider,
+    ActiviteProvider
   ]
 })
 export class AppModule {}
