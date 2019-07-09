@@ -6,3 +6,5 @@ export class Activite extends Base {
   type: string = Activite.TYPE;
   nom: string;
 }
+
+export const ActiviteViews = [];

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Liste des idées</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="idees">
+    <ion-card *ngFor="let idee of idees" color="primary-light">
+
+      <ion-card-header *ngIf="idee && idee.user">
+        Proposée par {{ idee.user.username }}
+      </ion-card-header>
+
+      <ion-card-content *ngIf="idee.idee">
+        {{ idee.idee }}
+      </ion-card-content>
+
+    </ion-card>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="toIdeeNew()">
+      <ion-icon name="add" color="white"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

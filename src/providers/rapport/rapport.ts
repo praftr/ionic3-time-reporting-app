@@ -5,7 +5,7 @@ import { Rapport } from '../../models/rapport';
 @Injectable()
 export class RapportProvider extends BaseProvider {
 
-  public getAll(): Promise<any> {
+  public getAll(): Promise<Rapport[]> {
     return this.getAllByType(Rapport.TYPE);
   }
 

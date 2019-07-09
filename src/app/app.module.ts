@@ -16,12 +16,17 @@ import { TacheProvider } from '../providers/tache/tache';
 import { BaseProvider } from '../providers/base/base';
 import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 import { ActiviteProvider } from '../providers/activite/activite';
+import { IdeeProvider } from '../providers/idee/idee';
+import { IdeeIndexPage } from '../pages/idee-index/idee-index';
+import { IdeeNewPage } from '../pages/idee-new/idee-new';
 
 @NgModule({
   declarations: [
     MyApp,
     RapportNewPage,
-    RapportIndexPage
+    RapportIndexPage,
+    IdeeIndexPage,
+    IdeeNewPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,9 @@ import { ActiviteProvider } from '../providers/activite/activite';
   entryComponents: [
     MyApp,
     RapportNewPage,
-    RapportIndexPage
+    RapportIndexPage,
+    IdeeIndexPage,
+    IdeeNewPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +51,8 @@ import { ActiviteProvider } from '../providers/activite/activite';
     ProjetProvider,
     TacheProvider,
     BaseProvider,
-    ActiviteProvider
+    ActiviteProvider,
+    IdeeProvider
   ]
 })
 export class AppModule {}

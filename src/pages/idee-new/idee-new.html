@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Soumettre une idée</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="newForm" (ngSubmit)="onSubmit()">
+
+    <ion-input type="hidden" [(ngModel)]="idee.user_id" formControlName="user_id"></ion-input>
+
+    <ion-item>
+      <ion-label>Description de l'idée</ion-label>
+      <ion-textarea required [(ngModel)]="idee.idee" formControlName="idee"></ion-textarea>
+    </ion-item>
+
+    <button ion-button full [disabled]="!newForm.valid">Soumettre</button>
+
+  </form>
+</ion-content>
