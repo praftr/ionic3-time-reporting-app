@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { RapportIndexPage } from '../rapport-index/rapport-index';
 import { Events } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'page-user-login',
@@ -21,7 +23,8 @@ export class UserLoginPage {
     private userProvider: UserProvider,
     private formBuilder: FormBuilder,
     private storage: Storage,
-    public events: Events
+    public events: Events,
+    public alertCtrl: AlertController
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -39,15 +42,47 @@ export class UserLoginPage {
 
     this.userProvider.login(email, password)
       .then(async user => {
-        // Let other pages user is logged in
-        this.events.publish('user:connected', user);
-        // Store user in localStorage
-        await this.storage.set('user', user);
-        // Re-enable side menu "mainMenu"
-        this.menuCtrl.enable(true, 'mainMenu');
-        this.navCtrl.setRoot(RapportIndexPage);
+        if (!user.rgpd) {
+          this.showConfirm(user);
+        } else {
+          this.userLogin(user);
+        }
       })
       .catch(err => this.error = err);
+  }
+
+  private async userLogin(user: User) {
+    // Let other pages user is logged in
+    this.events.publish('user:connected', user);
+    // Store user in localStorage
+    await this.storage.set('user', user);
+    // Re-enable side menu "mainMenu"
+    this.menuCtrl.enable(true, 'mainMenu');
+    this.navCtrl.setRoot(RapportIndexPage);
+  }
+
+  private showConfirm(user: User) {
+    const confirm = this.alertCtrl.create({
+      title: 'Condition d\'utilisation.',
+      message: 'En utilisant cette application, vous acceptez que les informations saisies soient la propriété de la société Edycem',
+      buttons: [
+        {
+          text: 'Je ne suis pas d\'accord',
+          handler: () => {
+            this.error = 'Vous n\'avez pas accepté les condition d\'utilisation';
+          }
+        },
+        {
+          text: 'Je suis d\'accord',
+          handler: async () => {
+            user.rgpd = true;
+            await this.userProvider.update(user);
+            await this.userLogin(user);
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 }
