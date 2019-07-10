@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="error__content" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+
+    <ion-item>
+      <ion-label>E-mail</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Mot de passe</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <button ion-button full [disabled]="!loginForm.valid">Connexion</button>
+
+  </form>
+</ion-content>

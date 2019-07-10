@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
 import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 import { IdeeIndexPage } from '../pages/idee-index/idee-index';
+import { UserLoginPage } from '../pages/user-login/user-login';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +14,7 @@ import { IdeeIndexPage } from '../pages/idee-index/idee-index';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = RapportIndexPage;
+  rootPage: any = UserLoginPage;
 
   pages: Array<{title: string, icon: string, component: any}>;
 

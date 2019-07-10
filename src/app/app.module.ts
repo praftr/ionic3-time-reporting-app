@@ -19,6 +19,8 @@ import { ActiviteProvider } from '../providers/activite/activite';
 import { IdeeProvider } from '../providers/idee/idee';
 import { IdeeIndexPage } from '../pages/idee-index/idee-index';
 import { IdeeNewPage } from '../pages/idee-new/idee-new';
+import { UserLoginPage } from '../pages/user-login/user-login';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { IdeeNewPage } from '../pages/idee-new/idee-new';
     RapportNewPage,
     RapportIndexPage,
     IdeeIndexPage,
-    IdeeNewPage
+    IdeeNewPage,
+    UserLoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +42,8 @@ import { IdeeNewPage } from '../pages/idee-new/idee-new';
     RapportNewPage,
     RapportIndexPage,
     IdeeIndexPage,
-    IdeeNewPage
+    IdeeNewPage,
+    UserLoginPage
   ],
   providers: [
     StatusBar,

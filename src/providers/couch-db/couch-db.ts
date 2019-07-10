@@ -85,6 +85,13 @@ export class CouchDBProvider {
       .catch(err => Promise.reject(err));
   }
 
+  public findDoc(query: any): Promise<any> {
+    query.limit = 1;
+    return this.localDB.find(query)
+      .then(response => Promise.resolve(response.docs))
+      .catch(err => Promise.reject(err));
+  }
+
   public createIndex(index: any): Promise<any> {
     return this.localDB.createIndex(index)
       .then(response => Promise.resolve(response.result))
