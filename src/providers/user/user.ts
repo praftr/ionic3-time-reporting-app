@@ -16,7 +16,7 @@ export class UserProvider extends BaseProvider {
         if (user.length === 0) {
           throw Error('Aucun utilisateur n\'a été trouvé');
         }
-        Promise.resolve(user);
+        return Promise.resolve(user[0])
       })
       .catch(err => Promise.reject(err));
   }

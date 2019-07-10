@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Events, Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,6 +7,7 @@ import { CouchDBFactory } from '../providers/couch-db/couch-db-factory';
 import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 import { IdeeIndexPage } from '../pages/idee-index/idee-index';
 import { UserLoginPage } from '../pages/user-login/user-login';
+import { User } from '../models/user';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,11 +19,14 @@ export class MyApp {
 
   pages: Array<{title: string, icon: string, component: any}>;
 
+  user: User;
+
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private couchDBFactory: CouchDBFactory) {
+    private couchDBFactory: CouchDBFactory,
+    public events: Events) {
     this.initializeApp();
     this.couchDBFactory.createCouchDB();
 
@@ -31,6 +35,9 @@ export class MyApp {
       { title: 'Saisies', icon: 'stopwatch', component: RapportIndexPage },
       { title: 'Idées', icon: 'bulb', component: IdeeIndexPage },
     ];
+
+    // Get the user as soon as he's connected
+    events.subscribe('user:connected', user => this.user = user);
 
   }
 

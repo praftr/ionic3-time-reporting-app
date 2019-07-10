@@ -4,6 +4,7 @@ import { UserProvider } from '../../providers/user/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { RapportIndexPage } from '../rapport-index/rapport-index';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-user-login',
@@ -19,7 +20,8 @@ export class UserLoginPage {
     public menuCtrl: MenuController,
     private userProvider: UserProvider,
     private formBuilder: FormBuilder,
-    private storage: Storage
+    private storage: Storage,
+    public events: Events
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
@@ -37,6 +39,8 @@ export class UserLoginPage {
 
     this.userProvider.login(email, password)
       .then(async user => {
+        // Let other pages user is logged in
+        this.events.publish('user:connected', user);
         // Store user in localStorage
         await this.storage.set('user', user);
         // Re-enable side menu "mainMenu"
