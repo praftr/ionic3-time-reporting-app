@@ -1,5 +1,7 @@
 {
   "name": "edycem",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
