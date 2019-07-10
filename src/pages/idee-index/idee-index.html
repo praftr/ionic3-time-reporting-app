@@ -12,7 +12,7 @@
     <ion-card *ngFor="let idee of idees" color="primary-light">
 
       <ion-card-header *ngIf="idee && idee.user">
-        Proposée par {{ idee.user.username }}
+        Proposée par {{ idee.user.prenom }} {{ idee.user.nom }}
       </ion-card-header>
 
       <ion-card-content *ngIf="idee.idee">

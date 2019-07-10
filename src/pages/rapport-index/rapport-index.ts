@@ -5,6 +5,8 @@ import { Rapport } from '../../models/rapport';
 import { ProjetProvider } from '../../providers/projet/projet';
 import { RapportNewPage } from '../rapport-new/rapport-new';
 import { ActiviteProvider } from '../../providers/activite/activite';
+import { User } from '../../models/user';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-rapport-index',
@@ -12,18 +14,21 @@ import { ActiviteProvider } from '../../providers/activite/activite';
 })
 export class RapportIndexPage {
   private rapports: Rapport[];
-  private user_id = '04802822de2af5cc4af53bac8c003378';
+  private user: User;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private rapportProvider: RapportProvider,
     private projetProvider: ProjetProvider,
-    private activiteProvider: ActiviteProvider) {
+    private activiteProvider: ActiviteProvider,
+    private storage: Storage
+  ) {
   }
 
-  ionViewDidLoad() {
-    this.rapportProvider.getAllByUser(this.user_id)
+  async ionViewDidLoad() {
+    this.user = await this.storage.get('user');
+    this.rapportProvider.getAllByUser(this.user._id)
       .then(docs => {
         this.rapports = docs.filter(doc => doc.type === Rapport.TYPE);
         this.rapports.forEach(async rapport => {

@@ -10,6 +10,7 @@ import { ProjetProvider } from '../../providers/projet/projet';
 import { Projet } from '../../models/projet';
 import { RapportIndexPage } from '../rapport-index/rapport-index';
 import { BaseProvider } from '../../providers/base/base';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-rapport-new',
@@ -29,7 +30,8 @@ export class RapportNewPage {
     private tacheProvider: TacheProvider,
     private rapportProvider: RapportProvider,
     private projetProvider: ProjetProvider,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private storage: Storage
   ) {
     this.rapport = new Rapport();
     this.newForm = this.formBuilder.group({
@@ -41,8 +43,7 @@ export class RapportNewPage {
       tache_id: ['', Validators.required]
     });
     this.projet = new Projet();
-    // todo: Get the user's id from the current logged user
-    this.rapport.user_id = '04802822de2af5cc4af53bac8c003378';
+    this.storage.get('user').then(user => this.rapport.user_id = user._id);
     this.rapport.date = BaseProvider.getDateTimeNow();
   }
 

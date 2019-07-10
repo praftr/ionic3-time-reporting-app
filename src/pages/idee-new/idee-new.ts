@@ -4,6 +4,7 @@ import { IdeeProvider } from '../../providers/idee/idee';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Idee } from '../../models/idee';
 import { IdeeIndexPage } from '../idee-index/idee-index';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-idee-new',
@@ -17,7 +18,8 @@ export class IdeeNewPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private ideeProvider: IdeeProvider,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private storage: Storage
   ) {
     this.idee = new Idee();
     this.newForm = this.formBuilder.group({
@@ -25,7 +27,7 @@ export class IdeeNewPage {
       idee: ['', Validators.required],
       user_id: ['', Validators.required]
     });
-    this.idee.user_id = '04802822de2af5cc4af53bac8c003378';
+    this.storage.get('user').then(user => this.idee.user_id = user._id);
   }
 
   ionViewDidLoad() {
