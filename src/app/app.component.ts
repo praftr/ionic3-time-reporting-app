@@ -8,6 +8,7 @@ import { RapportIndexPage } from '../pages/rapport-index/rapport-index';
 import { IdeeIndexPage } from '../pages/idee-index/idee-index';
 import { UserLoginPage } from '../pages/user-login/user-login';
 import { User } from '../models/user';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +27,9 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private couchDBFactory: CouchDBFactory,
-    public events: Events) {
+    public events: Events,
+    private storage: Storage
+  ) {
     this.initializeApp();
     this.couchDBFactory.createCouchDB();
 
@@ -38,7 +41,6 @@ export class MyApp {
 
     // Get the user as soon as he's connected
     events.subscribe('user:connected', user => this.user = user);
-
   }
 
   initializeApp() {
@@ -54,5 +56,10 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logOut() {
+    this.storage.remove('user');
+    this.nav.setRoot(UserLoginPage);
   }
 }
