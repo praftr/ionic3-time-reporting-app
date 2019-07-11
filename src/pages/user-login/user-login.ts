@@ -64,7 +64,7 @@ export class UserLoginPage {
   private showConfirm(user: User) {
     const confirm = this.alertCtrl.create({
       title: 'Condition d\'utilisation.',
-      message: 'En utilisant cette application, vous acceptez que les informations saisies soient la propriété de la société Edycem',
+      message: 'En utilisant cette application, vous acceptez que les informations saisies soient la propriété de la société DummyFirm',
       buttons: [
         {
           text: 'Je ne suis pas d\'accord',

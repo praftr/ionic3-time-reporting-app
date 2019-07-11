@@ -15,8 +15,8 @@ export class CouchDBProvider {
   private remoteDB: any;
 
   constructor() {
-    this.localDB = new PouchDB('edycem');
-    this.remoteDB = new PouchDB(`https://daefdabf-f8f9-49cb-8872-8fa46824191b-bluemix.cloudant.com/edycem`);
+    this.localDB = new PouchDB('my_database');
+    this.remoteDB = new PouchDB(`http://admin:admin@127.0.0.1:5990/my_database`);
   }
 
   public async initialize(): Promise<any> {
